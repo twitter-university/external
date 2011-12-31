@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stencils xmlns:xlink="http://www.w3.org/1999/xlink">
+    <stencil-list type="RECENT">
+        <stencil-ref path="~/Library/Application Support/OmniGraffle/Stencils/Marakana-ID.gstencil" alias="YES"/>
+        <category-ref path="ALL/Common"/>
+        <stencil-ref path="~/Library/Application Support/OmniGraffle/Stencils/3d Flowchart.gstencil" alias="YES"/>
+        <stencil-ref path="~/Library/Application Support/OmniGraffle/Stencils/Carousels.gstencil" alias="YES"/>
+        <stencil-ref path="~/Library/Application Support/OmniGraffle/Stencils/Charts for storyboarding.gstencil" alias="YES"/>
+    </stencil-list>
+    <stencil-list type="FAVORITES" default="YES"/>
+</stencils>

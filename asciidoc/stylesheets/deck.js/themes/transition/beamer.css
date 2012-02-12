@@ -6,7 +6,7 @@
     -ms-transition: -ms-transform 500ms ease-in-out;
     -o-transition: -o-transform 500ms ease-in-out;
     transition: transform 500ms ease-in-out; }
-  .csstransitions.csstransforms .deck-container:not(.deck-menu) .slide {
+  .csstransitions.csstransforms .deck-container:not(.deck-menu) .slide not(img) {
     position: absolute;
     top: 0;
     left: 0;

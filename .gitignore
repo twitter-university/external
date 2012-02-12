@@ -1,0 +1,15 @@
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Eclipse Artifacts #
+#####################
+*.metadata/*
+
+# Any SVN left around #
+#######################
+.svn*
+

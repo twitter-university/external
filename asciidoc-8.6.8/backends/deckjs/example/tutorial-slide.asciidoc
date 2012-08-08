@@ -1,0 +1,228 @@
+deck.js Support for Asciidoc
+=============================
+:author: Qingping Hou 
+:email: <dave2008713@gmail.com>
+:description: a tutorial for writing deck.js presentation with asciidoc
+:revdate: 2012-02-09
+:revnumber: 0.4
+:deckjs_theme: neon
+:deckjs_transition: horizontal-slide
+:pygments:
+:pygments_style: native
+:scrollable:
+
+
+== What is deck.js?
+
+*deck.js* is a JavaScript library for building modern HTML presentations. *deck.js* is flexible enough to let advanced CSS and JavaScript authors craft highly customized decks, but also provides templates and themes for the HTML novice to build a standard slideshow.
+
+
+For more information, please check out its http://imakewebthings.github.com/deck.js/[project page].
+
+
+== How to generate deck.js with Asciidoc
+
+First, make sure you have at least asciidoc-8.6.6 installed and download this backend from the http://houqp.github.com/asciidoc-deckjs/[project page].
+
+Then install the backend:
+
+...........................................
+asciidoc --backend install deckjs-1.2.zip
+...........................................
+
+After the installation, it's just as simple as issuing following command:
+
+...........................................
+asciidoc -b deckjs.conf file.asciidoc
+...........................................
+
+You can also use this backend without installation, please refer to https://github.com/houqp/asciidoc-deckjs/blob/master/README.md[README] for details.
+
+
+== Shortcuts
+
+Following are built-in shortcuts in deck.js:
+
+* jump to any slide by given number, `g`.
+* preview all slides, `m`.
+
+Shortcuts from deck.js extensions:
+
+* toggle table of content, `t`
+
+
+== Syntax (basic)
+
+This part assumes that you are already familiar with some basic concepts in AsciiDoc.
+
+* slides are divided by *level 1* sections.
+...........................................
+== Slide1 title
+
+say whatever you want here.
+...........................................
+
+* lists
+
+...........................................
+* entry1
+* entry2
+* entry3
+...........................................
+
+* you can choose theme and transition effect by specifying the *deckjs-theme* and *deckjs-transition* attributes:
+
+...........................................
+:deckjs_theme: neon
+:deckjs_transition: vertical-slide
+...........................................
+
+
+//////////////////////////////////////////////////////
+* ordered list
+
+...........................................
+1. entry1
+1. entry2
+1. entry3
+...........................................
+
+A complete guide for lists can be found at http://www.methods.co.nz/asciidoc/userguide.html#X64[this page]
+//////////////////////////////////////////////////////
+
+
+== Syntax (nested slide)
+
+Nested slide (or subslide) give you the ability to create substeps in slides. In this backend, elements marked by *incrementa* option will be paused before show up.
+
+syntax:
+
+...........................................
+[options="incremental"]
+* this entry should be the first to show up
+* this entry should show up following the first one
+* this entry should be the last one
+...........................................
+
+effect:
+
+[options="incremental"]
+* this entry should be the first to show up
+* this entry should show up following the first one
+* this entry should be the last one 
+
+
+== Syntax (literal block)
+syntax:
+
+	...........................................
+	<html>
+		<head>
+		</head>
+		<body>
+			<p>Hello World.</p>
+		</body>
+	</html>
+	...........................................
+
+effect:
+
+[options="incremental"]
+...........................................
+<html>
+	<head>
+	</head>
+	<body>
+		<p>Hello World.</p>
+	</body>
+</html>
+...........................................
+
+
+== Syntax (code block)
+
+syntax:
+
+...........................................
+[source,c,numbered]
+-------------------------------------------
+int swallow_redpill () {
+ unsigned char m[2+4], rpill[] = "\x0f\x01\x0d\x00\x00\x00\x00\xc3"; 
+ *((unsigned*)&rpill[3]) = (unsigned)m;
+ ((void(*)())&rpill)();
+ return (m[5]>0xd0) ? 1 : 0;
+}
+-------------------------------------------
+...........................................
+
+effect:
+
+[options="incremental"]
+[source,c,numbered]
+-------------------------------------------
+int swallow_redpill () {
+ unsigned char m[2+4], rpill[] = "\x0f\x01\x0d\x00\x00\x00\x00\xc3";
+ *((unsigned*)&rpill[3]) = (unsigned)m;
+ ((void(*)())&rpill)();
+ return (m[5]>0xd0) ? 1 : 0;
+}
+-------------------------------------------
+
+By default, AsciiDoc use *source-highlight* to highlight your code. If you want to use *Pygments*, you have to set _pygments_ attribute (refer to example template).
+
+
+== Syntax (quote block)
+QuoteBlocks syntax from Asciidoc is fully supported, you can find complete guide on http://www.methods.co.nz/asciidoc/userguide.html#_quote_blocks[this page].
+
+syntax:
+
+...........................................
+  [quote, L. Kronecker]
+  ___________________________________________
+  God made the natural number and all the rest is the work of man
+  ___________________________________________
+...........................................
+
+effect:
+
+[options="incremental"]
+[quote, L. Kronecker]
+___________________________________________
+God made the natural number and all the rest is the work of man
+___________________________________________
+
+
+== Syntax (insert image)
+
+syntax:
+
+...........................................
+image::http://www.gnu.org/graphics/gnu-head-sm.jpg[title="Texinfo"]
+...........................................
+
+effect:
+
+[options="incremental"]
+image::http://www.gnu.org/graphics/gnu-head-sm.jpg[title="Levitating GNU"]
+
+
+== Syntax (insert video)
+
+syntax:
+
+...........................................
+video::http://www.youtube.com/embed/GP3zvc2dG5Y[width="420", height="315"]
+...........................................
+
+effect:
+
+[options="incremental"]
+video::http://www.youtube.com/embed/GP3zvc2dG5Y[width="420", height="315"]
+
+
+== The End
+
+That's all. Hope you enjoy this backend. :-)
+
+
+

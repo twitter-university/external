@@ -1,0 +1,1199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.8" />
+<title></title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="literalblock">
+<div class="content">
+<pre><code>AsciiDoc Installation</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>version 8.6.8, 17 July 2012</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Note
+    The current version of AsciiDoc requires Python 2.4 or newer to run. If
+    you don’t already have an up-to-date version of Python installed it can
+    be downloaded from the official Python website
+    [1]http://www.python.org/.
+  __________________________________________________________________</code></pre>
+</div></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Prerequisites
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code>See the [2]README page.
+  __________________________________________________________________</code></pre>
+</div></div>
+</li>
+<li>
+<p>
+Installing from the Mercurial repository
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code> The AsciiDoc [3]Mercurial repository is hosted by [4]Google Code. To
+ browse the repository go to
+ [5]http://code.google.com/p/asciidoc/source/browse/. You can install
+ AsciiDoc from the repository if you don’t have an up to date packaged
+ version or want to get the latest version from the trunk:
+   * Make sure you have [6]Mercurial installed, you can check with:
+$ hg --version
+   * Go to the directory you want to install AsciiDoc into and download
+     the repository. This example gets the 8.6.8 tagged release:
+$ cd ~/bin
+$ hg clone -r 8.6.8 https://asciidoc.googlecode.com/hg/ asciidoc-8.6.8</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>You now have two choices: you can run asciidoc locally from your
+repository or you can use autoconf(1) and make(1) to perform a
+system-wide install.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>2.1. Running asciidoc from your local copy</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> Create a symlink to the AsciiDoc script in a search PATH directory so
+ it’s easy to execute asciidoc from the command-line, for example:
+$ ln -s ~/bin/asciidoc-8.6.8/asciidoc.py ~/bin/asciidoc
+$ ln -s ~/bin/asciidoc-8.6.8/a2x.py ~/bin/a2x</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Use the Mercurial pull command to update your local AsciiDoc
+repository.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>2.2. Installing asciidoc for all users</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Create configure using autoconf(1); use configure to create the
+Makefile; run make(1); build the man pages; install:</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>$ autoconf
+$ ./configure
+$ make
+$ sudo make install</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>To uninstall:</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>$ sudo make uninstall
+__________________________________________________________________</code></pre>
+</div></div>
+</li>
+<li>
+<p>
+Distribution tarball installation
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code>The distribution source tarballs can be downloaded from the SourceForge
+[7]http://sourceforge.net/projects/asciidoc/.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Note
+    Unless you are [8]installing on Microsoft Windows you should use the
+    tarball and not the zip file to install the the distribution (the
+    tarball contains symlinks).</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>If your flavor or UNIX or Linux does not have a packaged AsciiDoc
+distribution or if you prefer to install the latest AsciiDoc version
+from source use the configure shell script in the tarball root
+directory.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> The autoconf(1) generated configure script creates a make file that is
+ tailored for your system. To install:
+$ tar -xzf asciidoc-8.6.8.tar.gz
+$ cd asciidoc-8.6.8
+$ ./configure
+$ sudo make install</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> To install the documentation:
+$ sudo make docs</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> To uninstall AsciiDoc:
+$ sudo make uninstall</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>If Vim is installed on your system the AsciiDoc Vim syntax highlighter
+and filetype detection scripts will be install in the global Vim
+configuration file directory (asciidoc.vim in the syntax directory and
+asciidoc_filetype.vim in the ftdetect directory).
+  __________________________________________________________________</code></pre>
+</div></div>
+</li>
+<li>
+<p>
+Microsoft Windows installation
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code> AsciiDoc is developed and tested on Linux but there seem to be quite a
+ few people using it on Windows. To install AsciiDoc on Windows unzip
+ the distribution Zip file contents:
+$ unzip asciidoc-8.6.8.zip</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>This will create the folder asciidoc-8.6.8 containing the asciidoc.py
+and a2x.py executables along with configuration files and
+documentation.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>To generate DocBook based outputs (e.g. PDFs) you will also need a
+working DocBook toolchain. Installing and configuring a DocBook
+toolchain on Windows can be a challenge — this blog post explains
+[9]How to Create Handsome PDF Documents Without Frustration using
+[10]Cygwin, [11]dblatex and AsciiDoc.
+  __________________________________________________________________</code></pre>
+</div></div>
+</li>
+<li>
+<p>
+Testing your installation
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code> Test out asciidoc by changing to the AsciiDoc application directory and
+ convert the User Guide document (./doc/asciidoc.txt) to XHTML
+ (./doc/asciidoc.html):
+$ python asciidoc.py doc/asciidoc.txt</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> [12]testasciidoc offers a more extensive set of conformance tests,
+ though you do need to create the test data before running the tests
+ (this in itself is a good post-install test):
+$ python ./tests/testasciidoc.py update</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> Now you can run the tests by executing this command:
+$ python ./tests/testasciidoc.py run</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> A full battery of tests can be run from the main.aap script in the
+ distribution root directory:
+$ aap test
+   __________________________________________________________________</code></pre>
+</div></div>
+</li>
+<li>
+<p>
+Building the distribution
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code>The AsciiDoc distribution is built using [13]A-A-P (a software build
+system written by Bram Moolenaar). The AsciiDoc A-A-P scripts are:</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>./main.aap
+       Builds the distribution tarball and zip files, documentation and
+       example website.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>./doc/main.aap
+       Builds distribution documentation.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>./examples/website/main.aap
+       Builds AsciiDoc website.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>./common.aap
+       Included in all scripts.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code> To build the distribution tarball and zip files, documentation and
+ example website run A-A-P from the distribution root directory:
+$ aap
+   __________________________________________________________________</code></pre>
+</div></div>
+</li>
+<li>
+<p>
+Prepackaged AsciiDoc installation
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code>The following platform specific AsciiDoc packages are available:</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Debian GNU/Linux
+       If you use Debian or a Debian based distribution there’s an
+       [14]AsciiDoc Debian package available. Thanks to [15]Fredrik
+       Steen who built and maintains the Debian AsciiDoc package.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Gentoo Linux
+       If you use Gentoo Linux there’s a [16]Gentoo AsciiDoc package
+       available. Thanks to [17]Brandon Philips for writing the ebuild.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Fedora Linux
+       With help from Terje Røsten, Chris Wright added asciidoc to
+       Fedora Extras which is available in the default installation. To
+       install asciidoc execute the following command:</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>$ yum install asciidoc</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Slackware Linux
+       John Calixto has created a Slackware package for AsciiDoc which
+       can be downloaded from [18]http://linuxpackages.net/.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Ark Linux
+       [19]Bernhard Rosenkraenzer added AsciiDoc to Ark Linux — the
+       package is available from the Ark Linux repository at
+       [20]http://arklinux.osuosl.org/dockyard-devel/, so Ark Linux
+       users should just run apt-get install asciidoc.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>T2 Linux
+       [21]Christian Wiese added AsciiDoc to the [22]T2 Linux
+       repository at
+       [23]http://svn.exactcode.de/t2/trunk/package/textproc/asciidoc/.
+       To build and install the package on a T2 system, run
+       ./scripts/Emerge-Pkg asciidoc from within your T2 source
+       directory (default: /usr/src/t2-src).</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Red Hat Enterprise Linux, Fedora and CentOS packages
+       Dag Wieers has built AsciiDoc RPMs for a number of Red Hat based
+       distributions, they can be downloaded from
+       [24]http://dag.wieers.com/rpm/packages/asciidoc/.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>CSW Package for Sun Solaris
+       Ben Walton has created a CSW package for AsciiDoc, you can find
+       it here: [25]http://opencsw.org/packages/asciidoc.</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>See also [26]Packager Notes in the AsciiDoc User Guide.
+  __________________________________________________________________</code></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Version 8.6.8
+Last updated 2010-11-15 08:44:54 NZDT</code></pre>
+</div></div>
+</li>
+</ol></div>
+<div class="paragraph"><p>References</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+<a href="http://www.python.org/">http://www.python.org/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="file://localhost/tmp/lynxXXXXr4pa6e/README.html">file://localhost/tmp/lynxXXXXr4pa6e/README.html</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.selenic.com/mercurial/">http://www.selenic.com/mercurial/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://code.google.com/">http://code.google.com/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://code.google.com/p/asciidoc/source/browse/">http://code.google.com/p/asciidoc/source/browse/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.selenic.com/mercurial/">http://www.selenic.com/mercurial/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://sourceforge.net/projects/asciidoc/">http://sourceforge.net/projects/asciidoc/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="file://localhost/tmp/lynxXXXXr4pa6e/L12440-2561TMP.html#X3">file://localhost/tmp/lynxXXXXr4pa6e/L12440-2561TMP.html#X3</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://blog.rainwebs.net/2010/02/25/how-to-create-handsome-pdf-documents-without-frustration/">http://blog.rainwebs.net/2010/02/25/how-to-create-handsome-pdf-documents-without-frustration/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.cygwin.com/">http://www.cygwin.com/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://dblatex.sourceforge.net/">http://dblatex.sourceforge.net/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="file://localhost/tmp/lynxXXXXr4pa6e/testasciidoc.html">file://localhost/tmp/lynxXXXXr4pa6e/testasciidoc.html</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.a-a-p.org/">http://www.a-a-p.org/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://packages.debian.org/asciidoc">http://packages.debian.org/asciidoc</a>
+</p>
+</li>
+<li>
+<p>
+mailto:stone@debian.org
+</p>
+</li>
+<li>
+<p>
+<a href="http://packages.gentoo.org/package/app-text/asciidoc">http://packages.gentoo.org/package/app-text/asciidoc</a>
+</p>
+</li>
+<li>
+<p>
+mailto:brandon@ifup.org
+</p>
+</li>
+<li>
+<p>
+<a href="http://linuxpackages.net/">http://linuxpackages.net/</a>
+</p>
+</li>
+<li>
+<p>
+mailto:bero@arklinux.org
+</p>
+</li>
+<li>
+<p>
+<a href="http://arklinux.osuosl.org/dockyard-devel/">http://arklinux.osuosl.org/dockyard-devel/</a>
+</p>
+</li>
+<li>
+<p>
+mailto:cw@ixplanet.de
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.t2-project.org/">http://www.t2-project.org/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://svn.exactcode.de/t2/trunk/package/textproc/asciidoc/">http://svn.exactcode.de/t2/trunk/package/textproc/asciidoc/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://dag.wieers.com/rpm/packages/asciidoc/">http://dag.wieers.com/rpm/packages/asciidoc/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://opencsw.org/packages/asciidoc">http://opencsw.org/packages/asciidoc</a>
+</p>
+</li>
+<li>
+<p>
+<a href="file://localhost/tmp/lynxXXXXr4pa6e/userguide.html#X38">file://localhost/tmp/lynxXXXXr4pa6e/userguide.html#X38</a>
+</p>
+</li>
+</ol></div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2012-07-16 14:15:11 PDT
+</div>
+</div>
+</body>
+</html>

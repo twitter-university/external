@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>deck.svg.js test/demo</title>
+            
+        <meta name="description" content="deck.*.js">
+        <meta name="author" content="Rémi Emonet">
+        <!--meta name="viewport" content="width=1024, user-scalable=no"/-->
+            
+        <!-- Core and extension CSS files -->
+        <link rel="stylesheet" href="../core/deck.core.css">
+        <link rel="stylesheet" href="../extensions/status/deck.status.css">
+        <link rel="stylesheet" href="../extensions/hash/deck.hash.css">
+            
+        <!-- Style theme. More available in /themes/style/ or create your own. -->
+        <link rel="stylesheet" href="../themes/style/neon.css">
+            
+        <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+        <!--link rel="stylesheet" href="../themes/transition/horizontal-slide.css"-->
+            
+        <script src="../modernizr.custom.js"></script>
+            
+        <!-- Grab CDN jQuery, with a protocol relative URL; fall back to local if offline -->
+        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../jquery-1.7.2.min.js"><\/script>')</script>
+            
+        <!-- Deck Core and extensions -->
+        <script src="../core/deck.core.js"></script>
+        <script src="../extensions/hash/deck.hash.js"></script>
+        <!--script src="../extensions/status/deck.status.js"></script--->
+        <script src="../extensions/fit/deck.fit.js"></script>
+        <link rel="stylesheet" href="../extensions/fit/deck.fit-fs.css">
+
+        <script src="../extensions/step/deck.step.js"></script>
+        <script src="../extensions/events/deck.events.js"></script>
+        <script src="../extensions/anim/deck.anim.js"></script>
+        <script src="../libs/jquerysvg/jquery.svg.min.js"></script>
+        <script src="../libs/jquerysvg/jquery.svganim.min.js"></script>
+        <script src="../extensions/svg/deck.svg.js"></script>
+
+            
+        <style type="text/css">
+            .deck-container>.slide {border: 1px dashed #333;} /* for the demo */
+            .slide ul ul {margin-bottom: 0.25em;} /* remove some big spacing with neon nested lists */
+            .slide h1 {font-size: 3em;}
+            .slide h1 b {color: #0F0;}
+            .slide h1 em {color: #445; text-shadow: none; font-size: .3em;}
+            .slide h1 em {color: #445; text-shadow: none; font-size: .3em; display: inline-block;}
+            .slide span.highlight {border: 1px solid red;}
+            .deck-container > .slide .deck-before, .deck-container > .slide .deck-previous {opacity: 0.6;} /* <-- override darkish neon theme --> */
+            div.floatright {float:right;}
+            div.svgitem {display: inline-block; vertical-align: middle;}
+
+            .svgitem #circleRedCircle {fill: #D00; stroke-width: 20px; stroke: white;}
+            .style1 #circleRedCircle {fill: #D00; stroke-width: 20px; stroke: white;}
+            .style2 #circleRedCircle {fill: #999; stroke-width: 5px; stroke: green;}
+            .style3 #circleRedCircle {fill: yellow; stroke-width: 5px; stroke: red;}
+            .style3 #circleRedCircle:hover {stroke-width: 25px; filter: blur(10px)}
+            .style3 #circleBlue:hover {fill: #F00;}
+
+            /* playing with blur: http://css-plus.com/2012/03/gaussian-blur/ */
+            .style3 #circleRedCircle:hover, .style3 #circleGreen:hover {
+              -webkit-transition: all 0.5s ease-out; 
+                 -moz-transition: all 0.5s ease-out; 
+                  -ms-transition: all 0.5s ease-out; 
+                   -o-transition: all 0.5s ease-out; 
+                      transition: all 0.5s ease-out;
+            }
+            .style3 #circleRedCircle:hover, .style3 #circleGreen:hover { -webkit-filter: blur(5px); filter: url(#blur-effect-1); }
+        </style>
+    </head>
+
+<!-- for the demo, the body is not the container so it can be resized by the user -->
+<body>
+<svg id="svg-image-blur">
+    <filter id="blur-effect-1">
+        <feGaussianBlur stdDeviation="5" />
+    </filter>
+</svg>
+
+This page surely has a purpose.<br/>
+Use left/right arrow keys to browse the presentation.<br/>
+
+<!-- for the demo, a resizeable wrapper around the container -->
+<div class="deck-container">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+	<h1 title="use arrow keys to navigate">Getting started with deck.js:<br/><b>svg</b> extension
+            <br/><em>use right arrow to move on</em>
+            <br/><em class="ffox">(Firefox may ask for a plugin: just close the message and click on the page to give the focus back)</em>
+        </h1>
+</section>
+
+<section class="slide">
+    <h2>SVG Introduction</h2>
+    <ul>
+        <li>Scalable Vector Graphics (SVG)
+            <ul>
+                <li>Standard format for the web (and more)</li>
+                <li>Vector graphics: arbitrary stretching, no pixels</li>
+                <li>Cool editors (e.g., <a href="http://inkscape.org/">Inkscape</a>)</li>
+                <li>Lot of existing SVG (smiley by <a href="http://openclipart.org/detail/77641/smiley-face-by-inky2010">inky2010</a>)</li>
+            </ul>
+        </li>
+        <a href="http://openclipart.org/detail/77641/smiley-face-by-inky2010">
+        <object type="deckjs/svg" class="svgitem floatright">
+            <param name="src" value="smiley.svg" />
+            <param name="width" value="200px" />
+            <param name="height" value="200px" />
+        </object>
+        </a>
+    </ul>
+</section>
+<section class="slide">
+    <h2>The “svg” extension</h2>
+    <ul>
+        <li><a href="http://tavmjong.free.fr/SVG/SVG_IN_HTML/svg_in_html.html">Existing ways</a> of integrating SVG in HTML
+            <ul>
+                <li>Inline: the SVG content must be in the HTML file</li>
+                <li><tt>img</tt> tag: no interactivity support</li>
+                <li><tt>iframe/object/embed</tt> tags: separate DOM tree (styling and manipulation made harder)</li>
+            </ul>
+        </li>
+        <li>Deck.svg.js extension
+            <ul>
+                <li>does “inline” inclusion of external SVG files</li>
+                <li>uses a custom "object" tag and <a href="http://keith-wood.name/svg.html">jquery-svg</a></li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<section class="slide">
+    <h2>Deck.svg.js: size</h2>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="10px" />
+        <param name="height" value="10px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="21px" />
+        <param name="height" value="21px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="42px" />
+        <param name="height" value="42px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="85px" />
+        <param name="height" value="85px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="175px" />
+        <param name="height" value="175px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="350px" />
+        <param name="height" value="350px" />
+    </object>
+</section>
+<section class="slide">
+    <h2>Deck.svg.js: autosize</h2>
+    <ul><li>Does not work in chrome?<br/>(should see two smileys below)</li></ul>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="350px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="height" value="350px" />
+    </object>
+</section>
+<section class="slide">
+    <h2>Deck.svg.js: stretching</h2>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="100px" />
+        <param name="height" value="150px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="100px" />
+        <param name="height" value="150px" />
+        <param name="stretch" value="true" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="100px" />
+        <param name="height" value="200px" />
+        <param name="stretch" value="true" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="100px" />
+        <param name="height" value="250px" />
+        <param name="stretch" value="true" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="100px" />
+        <param name="height" value="300px" />
+        <param name="stretch" value="true" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="100px" />
+        <param name="height" value="350px" />
+        <param name="stretch" value="true" />
+    </object>
+    <object type="deckjs/svg" class="svgitem">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="100px" />
+        <param name="height" value="450px" />
+        <param name="stretch" value="true" />
+    </object>
+</section>
+<section class="slide">
+    <h2>Deck.svg.js: CSS styling</h2>
+    <object type="deckjs/svg" class="svgitem style1">
+        <param name="src" value="circle.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem style2">
+        <param name="src" value="circle.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem style3">
+        <param name="src" value="circle.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <ul>
+        <li>The same file is included three times using different styles (move your mouse on the yellow circle)</li>
+        <li>Needs for the SVG file to not contain the css attribute of interest<br/>(removed manually for the example)</li>
+    </ul>
+</section>
+<section class="slide">
+    <h2>svg+anim: show/hide</h2>
+    <object type="deckjs/svg" class="svgitem svg1">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem svg2">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem svg3">
+        <param name="src" value="smiley.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <ul>
+        <li>Use normal “anim” extension</li>
+        <li>Smooth operation thanks to <a href="http://keith-wood.name/svg.html">jquery-svg</a></li>
+        <li>Make stuff appear/disappear, …</li>
+    </ul>
+    <div class="anim-show slide" data-what=".svg2 svg"></div>
+    <div class="anim-show slide" data-what=".svg2 #left"></div>
+    <div class="anim-show slide" data-what=".svg2 #bottom"></div>
+    <div class="anim-show slide" data-what=".svg2 #right"></div>
+    <div class="anim-show slide" data-what=".svg2 #reflect"></div>
+    <div class="anim-hide slide" data-what="#left, #right, .svg2 #bottom"></div>
+    <div class="anim-show slide anim-continue" data-what="#left, #right, .svg2 #bottom"></div>
+    <div class="anim-hide slide" data-what=".svg3"></div>
+</section>
+<section class="slide">
+    <h2>svg+anim: svg attributes</h2>
+    <object type="deckjs/svg" class="svgitem svg1">
+        <param name="src" value="circle.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem svg2">
+        <param name="src" value="circle.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <object type="deckjs/svg" class="svgitem svg3">
+        <param name="src" value="circle.svg" />
+        <param name="width" value="200px" />
+        <param name="height" value="200px" />
+    </object>
+    <div class="anim-hide slide" data-what=".svg1 #circleRed, .svg1 #circleBlue"></div>
+    <div class="anim-hide slide anim-continue" data-what=".svg2 #circleBlue, .svg1 #circleGreen"></div>
+    <div class="anim-show slide" data-what=".svg1 #circleRed, .svg2 #circleRed"></div>
+    <ul class="slide"><li>The "view box" can be animate, and that's awesome</li></ul>
+    <div class="anim-attribute slide" data-what=".svg1 svg, .svg2 svg" data-attr="svgViewBox:110 120.5 17 17"></div>
+    <!--div class="anim-attribute slide" data-what=".svg1 #coolText" data-attr="svg-transform: rotate(90)"></div-->
+</section>
+<!--section class="slide">
+    <h2>Add/Remove Classes</h2>
+    <ul>
+        <li class="slide">We can also <span class="demo1">add</span>/remove classes: like the “highlight”</li>
+        <li class="slide"><span class="demo2 highlight">This is highlight by default</span> (styled with css)</li>
+        <li class="slide">We can add a class</li>
+        <div class="anim-addclass slide" data-what=".demo1" data-class="highlight"></div>
+        <li class="slide">And remove it</li>
+        <div class="anim-removeclass slide" data-what=".demo1,.demo2" data-class="highlight"></div>
+    </ul>
+</section-->
+<!--section class="slide">
+    <h2>The “svg” extension</h2>
+    <ul>
+        <li>Works in conjunction with</li>
+        <ul>
+            <li>“events”: extension that triggers events<br/>   (notify the slide when it becomes current)</li>
+            <li>“step”: extension that also trigger init events<br/>   (knowing about toplevel vs nested slides)</li>
+        </ul>
+        <li>Uses open attributes "data-*" (see source)</li>
+        <li>Adds animation classes</li>
+        <ul>
+            <li>anim-show/hide, anim-addclass/removeclass,</li>
+            <li>anim-attribute, anim-play, anim-pause, …</li>
+        </ul>
+    </ul>
+</section-->
+<section class="slide">
+    <h2>Browser support</h2>
+    <ul>
+        <li>Should be ok with a decent browser</li>
+        <li>Chrome problem when only width or height is specified</li>
+    </ul>
+</section>
+
+<!-- DEMO: svg -->
+
+<!-- deck.navigation snippet -->
+<!--a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a-->
+
+<!-- deck.status snippet -->
+<!--p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p-->
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide', {
+            // fitMarginX:100, fitMarginY:100,
+            // fitMode: "stretched" //"center middle" //"bottom right" //"top left"
+        });
+});
+</script>
+</div>
+</body>
+</html>

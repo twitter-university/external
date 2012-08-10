@@ -53,6 +53,7 @@ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgCAYA
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  font-family: 'Ubuntu Mono';
 }
 .csstransforms.boxshadow .deck-container .slide pre > :first-child:before {
   content: "";

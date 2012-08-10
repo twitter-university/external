@@ -1,0 +1,11 @@
+/* blue color styles */
+body { background-color: #449900;}
+a:link, a:visited, a:hover, a:active { color: fuchsia; text-decoration: underline }
+a:hover { color: red; text-decoration: underline }
+div.slide { color: yellow;}
+div.slide h1,h2,h3,h4,h5,h6 { color: lime;}
+em { color: orange;}
+tt { color: orange;}
+div.sidebarblock, div.literalblock, div.listingblock, div.exampleblock, div.title { color: #44ff00;}
+div.quoteblock, div.verseblock {  color: black; }
+div.admonitionblock { color: #88ff55;}

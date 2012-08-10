@@ -1,0 +1,10 @@
+/* blue color styles */
+body { background-color: navy;}
+a:link, a:visited, a:hover, a:active { color: yellow; text-decoration: underline }
+a:hover { color: red; text-decoration: underline }
+div.slide { background-color: navy; color: aqua;}
+div.slide h1,h2,h3,h4,h5,h6 { color: aqua;}
+em { color: blue;}
+tt { color: blue;}
+div.sidebarblock, div.literalblock, div.listingblock, div.exampleblock, div.title { color: teal;}
+div.admonitionblock { color: teal;}

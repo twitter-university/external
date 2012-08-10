@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<?xml-stylesheet href="callout.css" type="text/css"?>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<g>
+  <circle cx="50" cy="50" r="50" class="callout" />
+  <text x="50" y="80" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="80" fill="white" class="callout">4</text>
+</g>
+</svg>

@@ -1,0 +1,243 @@
+= AsciiDoc 'slidy2' backend plugin example
+:title: AsciiDoc slidy2 backend plugin example
+:description: AsciiDoc Slidy Backend  Plugin Example
+:keywords:  AsciiDoc asciidoc Backend backend W3C w3c HTML html Slidy slidy Plugin plugin Example example
+:Author:  Jean-Michel Inglebert
+:Author Initials: JMI
+:Date:   August, 2011
+:Email:   inglebert@iut-blagnac.fr
+:max-width!: 25em
+:slidebackground:
+
+ifdef::backend-slidy2[]
+include::slidybackgrounds.txt[]
+endif::backend-slidy2[]
+
+Introduction ... 
+
+== title (level 1)
+
+some contents
+
+=== title (level 2)
+
+some contents
+
+==== title (level 3)
+
+some contents
+
+===== title (level 4)
+
+some contents
+
+// split
+
+== section splitted
+
+NOTE: some contents
+
+ifdef::backend-slidy2[<<<]
+
+TIP: content continue ...
+
+// merge
+
+ifdef::backend-slidy2[:slidebackground!:]
+
+== section title (level 1)
+
+NOTE: some contents
+
+ifdef::backend-slidy2[>>>]
+
+== level 1 section merged
+
+NOTE: some contents
+
+== section title (level 1)
+
+NOTE: some contents
+
+ifdef::backend-slidy2[>>>]
+
+=== level 2 section merged
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+==== level 3 section merged
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+===== level 4 section merged
+
+some content
+
+===== level 4 section
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+===== level 4 section merged
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+==== level 3 section merged
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+=== level 2 section merged
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+== level 1 section merged
+
+some content
+
+== Defined Backgrounds
+
+You can define backgrounds at any point or put them
+in an included external file.
+
+In link:slidybackgrounds.txt[slidybackgrounds.txt], 
+we have defined : +default+,
++asciidocslidy+, +asciidocslidy2+, +asciidocslidy3+, +asccidocprocess+ and +w3c+ backgrounds.
+
+In the following slides, we are switching from one background
+to another.
+
+NOTE: the +ifdef::backend-slidy2[:slidebackground: nextOne]+
+takes only effect on the next slide.
+
+NOTE: the default background cannot be disabled
+
+ifdef::backend-slidy2[:slidebackground: asciidocslidy]
+
+== title (level 1) with +asciidocslidy+ background
+
+some contents
+
+ifdef::backend-slidy2[:slidebackground: asciidocslidy2]
+
+=== title (level 2) with +asciidocslidy2+ background
+
+some contents
+
+ifdef::backend-slidy2[:slidebackground: asciidocslidy3]
+
+=== title (level 2) with +asciidocslidy3+ background
+
+some contents
+
+ifdef::backend-slidy2[:slidebackground: asciidocprocess]
+
+==== title (level 3) with +asciidocprocess+ background
+
+some contents
+
+ifdef::backend-slidy2[:slidebackground: w3c]
+
+===== title (level 4) with +w3c+ background
+
+some contents
+
+ifdef::backend-slidy2[:slidebackground: w3c asciidocslidy]
+
+===== title (level 4) with +w3c+ and +asciidocslidy+ backgrounds
+
+From the next slide, all but the default background will be disable.
+
+ifdef::backend-slidy2[:slidebackground!:]
+
+:incremental:
+
+== incremental section (level 1)
+
+. item
+. item
+. item
+
+[width="15%"]
+|=======
+|1 |2 |A
+|3 |4 |B
+|5 |6 |C
+|=======
+
+[width="100%",grid="none"]
+|=============================================
+| |*Powered by*
+| |image:images/asciidoc.png["AsciiDoc",align="right"]
+| |*and* image:images/w3c_home.png["W3C",align="right"] Slidy
+|=============================================
+
+:incremental!:
+
+== non incremental section (level 1)
+
+. item
+. item
+. item
+
+[width="15%"]
+|=======
+|1 |2 |A
+|3 |4 |B
+|5 |6 |C
+|=======
+
+[width="100%",grid="none",frame="none"]
+|=============================================
+| |*Powered by*
+| |image:images/asciidoc.png["AsciiDoc",align="right"]
+| |*and* image:images/w3c_home.png["W3C",align="right"] Slidy
+|=============================================
+
+
+== incremental images
+
+:incremental:
+
+You can define incremental images blocks as follows :
+
+----
+images::last[first,second,...]
+----
+
+ifdef::backend-slidy2[<<<]
+
+The following statement :
+
+----
+images::images/osmfmoma4.png[images/osmfmoma1.png,images/osmfmoma2.png,images/osmfmoma3.png]
+----
+renders :
+
+ifdef::backend-slidy2[]
+images::images/osmfmoma4.png[images/osmfmoma1.png,images/osmfmoma2.png,images/osmfmoma3.png]
+endif::backend-slidy2[]
+
+ifndef::backend-slidy2[]
+image::images/osmfmoma4.png[scaledwidth="90%"]
+endif::backend-slidy2[]
+
+ifdef::backend-slidy2[]
+:slidebackground: asciidocslidy
+
+== Thanks for your attention
+
+Any questions ?
+
+endif::backend-slidy2[]
+

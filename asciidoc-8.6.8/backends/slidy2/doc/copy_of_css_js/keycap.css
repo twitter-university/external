@@ -1,0 +1,16 @@
+.keycap {
+	padding-left: .2em;
+	padding-right: .2em;
+	border-style: solid;
+	border-top-width: 2px;
+	border-left-width: 3px;
+	border-right-width: 3px;
+	border-bottom-width: 4px;
+	border-top-color: #ddddbb;
+	border-left-color: #ddddbb;
+	border-right-color: #888866;
+	border-bottom-color: #888866;
+	background-color: #ccccaa;
+	font-family: sans-serif;
+	font-size: smaller;
+}

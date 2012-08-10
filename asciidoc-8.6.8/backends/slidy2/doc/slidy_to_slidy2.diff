@@ -1,0 +1,119 @@
+1c1
+< /* slidy.js
+---
+> /* slidy2.js
+52a53,70
+> // jmi
+>   help_keymap:
+>     "PGDN\t: nextSlide\n" +
+>      "PGUP\t: previousSlide\n" +
+>      "HOME\t: firstSlide\n" +
+>      "END  \t: lastSlide\n" +
+>      "SPACE\t: nextContent\n" +
+>      "->  \t: nextContent\n" +
+>      "<-  \t: previousContent\n" +
+>      "A   \t: toggleAllSlides\n" +
+>      "F   \t: toggleFooter\n" +
+>      "K   \t: toggleMouseClick\n" +
+>      "I   \t: toggleIncremental\n" +
+>      "L   \t: toggleColorSet\n" +
+>      "T, C\t: tableOfContents\n" +
+>      "B   \t: biggerFontSize\n" +
+>      "S   \t: smallerFontSize\n" +
+>      "M   \t: key mapping\n",
+68a87,89
+> //jmi
+> incremental_display: true,
+> 
+110c131,134
+< 
+---
+>     // jmi
+>     this.color_sets = new Array();
+>     this.init_color_sets();
+>     
+751c775
+<                      "slide, click help below for more details";
+---
+>                      "slide, M to see keys mapping, click help below for more details";
+1043d1066
+< 
+1289a1313,1315
+>       
+> //jmi
+> if (!w3c_slidy.incremental_display) {incremental = false;}
+1319a1346,1347
+> //jmi
+> if (!w3c_slidy.incremental_display) {incremental = false;}
+2014,2015c2042,2066
+<     //else alert("key code is "+ key);
+< 
+---
+> //jmi
+>     else if (key == 73) // I to toggle incremental display
+>     {
+>       var slide = w3c_slidy.slides[w3c_slidy.slide_number];
+>       w3c_slidy.hide_slide(slide);
+>       if (w3c_slidy.incremental_display) { w3c_slidy.set_visibility_all_incremental("visible"); }
+>       w3c_slidy.incremental_display = !w3c_slidy.incremental_display ;
+>       w3c_slidy.last_shown = null ;
+>       w3c_slidy.set_visibility_all_incremental("hidden");
+>       //this.set_eos_status(true);
+>       w3c_slidy.show_slide(slide);
+>       return w3c_slidy.cancel(event);
+>     }
+>     else if (key == 76) // L to toggle color-set 
+>     {
+>       w3c_slidy.toggle_color_set();
+>       return w3c_slidy.cancel(event);
+>     }
+>     else if (key == 77) // display help_keymap 
+>     {
+>       alert(w3c_slidy.help_keymap);
+>       return w3c_slidy.cancel(event);
+>     }
+> //jmi end
+>      //else alert("key code is "+ key);
+2218a2270,2272
+> //jmi
+> if (!w3c_slidy.incremental_display) {value = "visible";}
+> 
+2549a2604,2635
+>   },
+> // jmi
+>   init_color_sets: function(){
+>    if (this.color_sets.length == 0){
+>      // initialize color_sets array
+>      var tmp = document.styleSheets;
+>      var j = 0;
+>      for (var i=0;i<tmp.length;i++) { 
+>        var css_name = null ;
+>        if (tmp[i].title) {
+> 	css_name = tmp[i].title ;
+>        }
+>        if ((tmp[i].href) && (tmp[i].href.indexOf('.css') != -1)) {
+> 	css_name = tmp[i].href.substring(tmp[i].href.lastIndexOf('/')+1,tmp[i].href.indexOf('.css')) ;
+>        }
+> 	if ((css_name) && (css_name.indexOf('color_set') > 0)) {
+>          this.color_sets[j] = tmp[i];
+>          this.color_sets[j++].disabled = true;
+> 	} 
+>      }
+>      if (this.color_sets.length > 0){ this.color_sets[0].disabled = false; }
+>    }
+>   },
+>   toggle_color_set: function(){
+>    // toggle to the next color_set
+>    if (this.color_sets.length > 0){
+>     var i = 0;
+>     while ((i < this.color_sets.length) && (this.color_sets[i].disabled == true)) { i = i + 1 ; }
+>     if (i == this.color_sets.length) { i = i - 1; }
+>     this.color_sets[i].disabled = true ;
+>     this.color_sets[(i + 1) % (this.color_sets.length)].disabled = false ;  
+>    }    
+2648c2734
+<     "les touches S et B pour modifier la taille de la police.",
+---
+>     "les touches S et B pour modifier la taille de la police, M pour l'association des touches.",
+2845d2930
+< 

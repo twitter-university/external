@@ -1,0 +1,11 @@
+/* rainbow color styles */
+body { background-color: #ffffaa;}
+a:link, a:visited, a:hover, a:active { color: blue; text-decoration: underline }
+a:hover { color: red; text-decoration: underline }
+div.slide { color: black;}
+div.slide h1,h2,h3,h4,h5,h6 { color: orange;}
+em { color: green;}
+tt { color: green;}
+div.sidebarblock, div.literalblock, div.listingblock, div.exampleblock, div.title { color: red;}
+div.quoteblock, div.verseblock {  color: black; }
+div.admonitionblock { color: red;}

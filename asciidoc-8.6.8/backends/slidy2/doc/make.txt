@@ -1,0 +1,109 @@
+= make.txt : an AsciiDoc poor man Makefile
+
+
+// edit accordingly to your AsciiDoc/OS settings
+ifdef::nt[]
+:asciidocdir: X:\\path\\to\\asciidoc\\
+:asciidocbin: {asciidocdir}asciidoc.py
+:cp: copy
+:ditaajar: X:\\path\\to\\ditaa\\ditaa0_9.jar
+:dbdir: X:\\path\\to\\docbook\\
+:dbdir: D:\\JMI\\tools\\docbook\\
+:xsltprocbin: {dbdir}bin\\xsltproc
+:fopbin: {dbdir}fop\\fop.bat
+endif::nt[]
+
+ifdef::posix[]
+:asciidocdir: /etc/asciidoc/
+:asciidocbin: {asciidocdir}asciidoc.py
+:cp: cp 
+:ditaajar: /path/to/ditaa/ditaa0_9.jar
+endif::posix[]
+
+:scriptsdir: {asciidocdir}javascripts
+:stylesdir: {asciidocdir}stylesheets
+
+// output files relative paths
+:iconsdir: ../images/icons
+
+// remove exclamation mark (!) to select output
+:html:
+:slidy:
+:pdf!:
+:ditaa!:
+
+// remove exclamation mark (!) to select audience
+:local:
+
+// remove exclamation mark (!) to select document source
+:doc1: slidy2_doc
+:doc2: slidy2_example
+
+// remove exclamation mark (!) to force compilation
+:force:
+
+// global settings
+:slidy2backendversion: 1.0.3
+
+// generic commands defs
+:cmddb: {asciidocbin} -b docbook  -a revnumber={slidy2backendversion}
+
+:cmdfo: {xsltprocbin} --stringparam ulink.show 0 --stringparam callout.graphics 1 --stringparam navig.graphics 1 --stringparam admon.textlabel 0 --stringparam admon.graphics 1 --stringparam admon.graphics.path ../images/icons/ --stringparam callout.graphics.path ../images/icons/callouts/ --stringparam navig.graphics.path ../images/icons/
+
+:cmdpdf: a2x -v -f pdf -L --fop --icons-dir=../images/icons -a revnumber={slidy2backendversion}
+
+:cmdditaa: java -jar {ditaajar} -r -o 
+
+// backends plugins /////////////////////////////////////////
+== backends plugins list
+os:{asciidocbin} --backend list[]
+
+
+// local outputs /////////////////////////////////////////
+ifdef::local[]
+
+== local outputs
+
+:cmdhtml: {asciidocbin} {stylesdir? -a stylesdir={stylesdir}}{scriptsdir? -a scriptsdir={scriptsdir}} -a numbered -a icons {iconsdir? -a iconsdir={iconsdir}} -a badges -a toc -a revnumber={slidy2backendversion}
+
+:cmdhtmldatauri: {cmdhtml} -a data-uri
+
+:cmdslidy: {asciidocbin} --backend slidy2 -a numbered -a icons -a badges  {iconsdir? -a iconsdir=../images/icons} -a stylesheet=doc/keycap.css -a revnumber={slidy2backendversion}
+
+:cmdslidydatauri: {cmdslidy} -a data-uri
+
+:cmdslidylinkcss: {asciidocbin} --backend slidy2 -a stylesdir=copy_of_css_js  -a scriptsdir=copy_of_css_js {iconsdir? -a iconsdir=../images/icons} -a numbered -a icons -a badges -a stylesheet=keycap.css  -a linkcss -a revnumber={slidy2backendversion}
+
+{ditaa}make:{cmdditaa}[osmfmoma1.txt,osmfmoma1.png]
+{ditaa}make:{cmdditaa}[osmfmoma2.txt,osmfmoma2.png]
+{ditaa}make:{cmdditaa}[osmfmoma3.txt,osmfmoma3.png]
+{ditaa}make:{cmdditaa}[osmfmoma4.txt,osmfmoma4.png]
+
+{slidy}asciidoc:{cmdslidy}[{doc1}.txt,{doc1}.slidy.html]
+{slidy}asciidoc:{cmdslidy}[{doc2}.txt,{doc2}.slidy.html]
+
+{slidy}asciidoc:{cmdslidydatauri}[{doc1}.txt,{doc1}.slidy.data-uri.html]
+{slidy}asciidoc:{cmdslidydatauri}[{doc2}.txt,{doc2}.slidy.data-uri.html]
+
+{slidy}asciidoc:{cmdslidylinkcss}[{doc1}.txt,{doc1}.slidy.linkcss.html]
+{slidy}asciidoc:{cmdslidylinkcss}[{doc2}.txt,{doc2}.slidy.linkcss.html]
+
+{nt}{pdf}asciidoc:{cmddb}[{doc1}.txt,{doc1}.xml]
+{nt}{pdf}asciidoc:{cmddb}[{doc2}.txt,{doc2}.xml]
+
+{nt}{pdf}os:{cmdfo} --output {doc1}.fo {asciidocdir}docbook-xsl/fo.xsl[{doc1}.xml]
+{nt}{pdf}os:{cmdfo} --output {doc2}.fo {asciidocdir}docbook-xsl/fo.xsl[{doc2}.xml]
+
+{nt}{pdf}os:{fopbin}[-fo {doc1}.fo -pdf ,{doc1}.pdf]
+{nt}{pdf}os:{fopbin}[-fo {doc2}.fo -pdf ,{doc2}.pdf]
+
+{posix}{pdf}os:{cmdpdf}[{doc1}.txt]
+{posix}{pdf}os:{cmdpdf}[{doc2}.txt]
+
+{html}asciidoc:{cmdhtml}[{doc1}.txt,{doc1}.html]
+{html}asciidoc:{cmdhtml}[{doc2}.txt,{doc2}.html]
+
+{html}asciidoc:{cmdhtmldatauri}[{doc1}.txt,{doc1}.data-uri.html]
+{html}asciidoc:{cmdhtmldatauri}[{doc2}.txt,{doc2}.data-uri.html]
+
+endif::local[]

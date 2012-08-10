@@ -1,0 +1,12 @@
+/* black color set styles */
+body { background-color: black !important; }
+a:link, a:visited, a:hover, a:active { color: gray; text-decoration: underline }
+a:hover { color: red; text-decoration: underline }
+div.slide { color: silver !important; }
+span, caption, th { color: silver !important; }
+div.slide h1,h2,h3,h4,h5,h6 { color: white;}
+em, strong { color: #999999;}
+tt { color: blue;}
+div.sidebarblock, div.literalblock, div.listingblock, div.exampleblock, div.title { color: black; }
+div.admonitionblock, div.quoteblock, div.verseblock {  color: white; }
+div.cover.slide, div.cover.slide h1 { background-color: black; }

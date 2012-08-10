@@ -1,0 +1,724 @@
+= 'slidy2' backend plugin for Asciidoc
+:title: slidy2 backend plugin for AsciiDoc
+:description: AsciiDoc slidy2 backend plugin
+:keywords: AsciiDoc asciidoc Backend backend W3C w3c HTML html Slidy slidy slidy2 plugin
+:Author:  Jean-Michel Inglebert
+:Author Initials: JMI
+:Date:   August, 2011
+:Email:   inglebert@iut-blagnac.fr
+:slideshowlocation: Your Computer
+:copyright: {date={localdate}}, {slideshowlocation} *** {author} *** Powered by AsciiDoc and W3C Slidy &#169; 
+:duration: 7
+:slidebackground: asciidocslidy
+:incremental!:
+
+
+**********************************************************************
+http://www.methods.co.nz/asciidoc[AsciiDoc] from 'Stuart Rackham' is a Text based document generation tool.
+
+http://www.w3.org/Talks/Tools/Slidy2/[W3C HTML Slidy] (C) from 'Dave Raggett' is an HTML slideshow tool.
+
+This document describes the 'slidy2' backend plugin which extends the distributed http://www.methods.co.nz/asciidoc[AsciiDoc] 'slidy' backend.
+**********************************************************************
+ifdef::backend-slidy2[]
+[TIP]
+====
+[width="60%",frame="none",grid="none"]
+|=============================================
+| The 'slidy2' plugin uses a slightly modified version of +slidy.js+ from 'Dave Raggett'.
+| Press the +++<span class="keycap">M</span>+++ key to see keys mapping (see also link:#(32)[Extra features added to W3C Slidy (C) slideshows]).
+|=============================================
+====
+endif::backend-slidy2[]
+NOTE: This backend plugin requires http://www.methods.co.nz/asciidoc[AsciiDoc] 8.6.6 or newer to run.
+
+:incremental:
+ifdef::backend-slidy2[:slidebackground!:]
+ifdef::backend-slidy2[<<<]
+
+link:http://www.latex-project.org/[LaTeX], link:http://docbook.sourceforge.net/[DocBook] and
+http://www.methods.co.nz/asciidoc[AsciiDoc]
+follow this  reusability template :
+'One Source' splitted in 'Many Files' to produce 'Many Output Formats' for 'Many Audiences'.
+
+ifdef::backend-slidy2[]
+images::./images/osmfmoma4.png[./images/osmfmoma1.png,./images/osmfmoma2.png,./images/osmfmoma3.png]
+endif::backend-slidy2[]
+
+ifndef::backend-slidy2[]
+image::./images/osmfmoma4.png[scaledwidth="90%"]
+endif::backend-slidy2[]
+
+:incremental!:
+
+== Goal
+
+WARNING: How to produce http://www.w3.org/Talks/Tools/Slidy2[Slidy] output format from
+any http://www.methods.co.nz/asciidoc[AsciiDoc] source file without
+defining a new document structure to produce slides.
+
+
+[NOTE]
+====
+link:http://www.latex-project.org/[LaTeX] link:http://latex-beamer.sourceforge.net/[beamer] and link:http://www.ctan.org/tex-archive/macros/latex/contrib/prosper/[prosper] or link:http://docbook.sourceforge.net/[DocBook]  link:http://wiki.docbook.org/topic/SlidesDoctype?highlight=(slide)[slides]
+tools require
+to define a new document structure to produce slides. 
+====
+
+:incremental!:
+
+== Added features
+
+. Produces a slide for each http://www.methods.co.nz/asciidoc[AsciiDoc]
+section level
+
+. Easily merges too short sections contents in one slide
+
+. Easily splits long contents to few slides
+
+. Extends incremental display scope
+
+. Adds an incremental images block
+
+. Adds slide 'footnotes' 
+
+. Adds SVG 'callouts'
+
+. Adds a 'backgound' block and a +slidebackground+ attribute
+
+. Adds a +slidefontsizeadjust+ attribute
+
+=== A slide for each 'AsciiDoc' section level
+
+With this contrib, a new slide is produced 'on each' AsciiDoc 'section level' (1..4).
+
+NOTE: When numbering is not set, the +:slidetitleindentcar:+ attribute value
+is inserted for each subsection title.
+
+[TIP]
+====
+The +slidetitleindentcar+ character defaults to '»' and can be redefined
+at any point with the following statement :
+
+----
+ :slidetitleindentcar: *
+----
+
+====
+
+=== Merging sections contents
+
+If you want to merge some sections contents, simply
+insert the following new 'nopagebreak' block macro (within a conditional block 
+to not interfere with your non-slide outputs) :
+
+----
+ ifdef::backend-slidy2[>>>]
+----
+
+TIP: the 'nopagebreak' instruction takes effect only for the
+next section. You should repeat it to merge more than one section.
+
+NOTE: any section level (1..4) can be merged in this way.
+
+For exemple, the next three sections will appear
+on the same slide in link:./slidy2_doc.slidy.html[this] 'slidy2' output.
+
+==== level 3 section
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+==== level 3 section merged
+
+some content
+
+ifdef::backend-slidy2[>>>]
+
+===== level 4 section merged
+
+some content
+
+=== Splitting too long content
+
+If you want to split some long content, simply
+insert the usual http://www.methods.co.nz/asciidoc[AsciiDoc] 'pagebreak' (within a conditional block 
+to avoid pagebreak in your non-slide outputs) :
+
+----
+ ifdef::backend-slidy2[<<<]
+----
+
+TIP: the +pagebreak+ template will recall the last 'section title' on each generated subslide
+and give it a subslide number.
+
+ifdef::backend-slidy2[<<<]
+
+[WARNING]
+.To preserve http://www.methods.co.nz/asciidoc[AsciiDoc] document structure
+=====
+. do not insert conditionnal pagebreak inside http://www.methods.co.nz/asciidoc[AsciiDoc] 'blocks'
+. do not insert conditionnal pagebreak inside http://www.methods.co.nz/asciidoc[AsciiDoc] 'tables'
+. do not insert conditionnal pagebreak inside http://www.methods.co.nz/asciidoc[AsciiDoc] 'numbered list'  (items numbering will restart)
+
+ifndef::backend-slidy2[]
+See <<XUG,'AsciiDoc' userguide 'Slidy' output>> for some examples.
+endif::backend-slidy2[]
+ifdef::backend-slidy2[]
+See link:#(25)['AsciiDoc' userguide 'Slidy' output] for some examples.
+endif::backend-slidy2[]
+=====
+
+=== Incremental display extended to
+
+:incremental:
+
+- paragraph
+- listingblock
+- literalblock
+- quoteblock
+- verseblock
+- qanda list
+- callout list
+- table
+
+ifndef::backend-slidy2[]
+You have to switch to the slidy output format to see how
+incremental display works on theses AsciiDoc constructs.
+endif::backend-slidy2[]
+
+ifdef::backend-slidy2[]
+<<<
+Paragraphs are blocks of text terminated by a blank line, the end of file, or the start of a DelimitedBlock. Paragraph markup is specified by configuration file [paradef-*] sections.
+
+  Consul *necessitatibus* per id,
+  consetetur, eu pro everti postulant
+  homero verear ea mea, qui.
+
+[verse]
+Consul *necessitatibus* per id,
+consetetur, eu pro everti postulant
+homero verear ea mea, qui.
+
+<<<
+
+--------------------------------------
+#include <stdio.h>
+
+int main() {
+   printf("Hello World!\n");
+   exit(0);
+}
+--------------------------------------
+
+...................................
+Consul *necessitatibus* per id,
+consetetur, eu pro everti postulant
+homero verear ea mea, qui.
+...................................
+
+<<<
+
+[quote, Bertrand Russell, The World of Mathematics (1956)]
+____________________________________________________________________
+A good notation has subtlety and suggestiveness which at times makes
+it almost seem like a live teacher.
+____________________________________________________________________
+
+
+[verse, William Blake, from Auguries of Innocence]
+__________________________________________________
+To see a world in a grain of sand,
+And a heaven in a wild flower,
+Hold infinity in the palm of your hand,
+And eternity in an hour.
+__________________________________________________
+
+<<<
+
+[qanda]
+Question one::
+        Answer one.
+Question two::
+        Answer two.
+
+.source code
+----
+first line  <1>
+second line <1><2>
+----
+
+<1> first callout
+<2> second callout
+
+<<<
+
+.Horizontal and vertical source data
+[width="80%",cols="3,^2,^2,10",options="header"]
+|=========================================================
+|Date |Duration |Avg HR |Notes
+
+|22-Aug-08 |10:24 | 157 |
+Worked out MSHR (max sustainable heart rate) by going hard
+for this interval.
+
+|22-Aug-08 |23:03 | 152 |
+Back-to-back with previous interval.
+
+|24-Aug-08 |40:00 | 145 |
+Moderately hard interspersed with 3x 3min intervals (2min
+hard + 1min really hard taking the HR up to 160).
+
+|=========================================================
+endif::backend-slidy2[]
+
+=== Incremental images block
+
+You can define incremental images blocks as follows :
+
+----
+images::last[first,second,...]
+----
+
+NOTE: You can use +data-uri+ attribute to embed incremental images.
+
+[WARNING]
+====
+It's a 'slidy2' *only* macro, so you have to use it
+in a conditionnal block. For exemple :
+
+----
+ ifdef::backend-slidy2[]
+  images::last[first,second,...]
+ endif::backend-slidy2[]
+
+ ifndef::backend-slidy2[]
+  image::last[]
+ endif::backend-slidy2[]
+----
+====
+
+ifdef::backend-slidy2[<<<]
+
+The following statement :
+
+----
+images::./images/osmfmoma4.png[./images/osmfmoma1.png,./images/osmfmoma2.png,./images/osmfmoma3.png]
+----
+
+ifdef::backend-slidy2[]
+renders :
+
+images::./images/osmfmoma4.png[./images/osmfmoma1.png,./images/osmfmoma2.png,./images/osmfmoma3.png]
+endif::backend-slidy2[]
+
+ifndef::backend-slidy2[]
+renders incremently in 'Slidy' output :
+
+image::./images/osmfmoma4.png[scaledwidth="90%"]
+endif::backend-slidy2[]
+
+:incremental!:
+
+=== Footnotes
+
+In 'Slidy' output, 'footnotes' are placed at the bottom of the
+slide where they are defined.
+
+A footnote footnote:[A first example footnote.],
+a second footnote footnote:[A second example footnote.],
+a footnote with a reference ID footnoteref:[myId,myId referenced footnote.]
+and a reference to another footnote footnoteref:[anotherId] (defined in the next slide in slidy output).
+
+ifdef::backend-slidy2[<<<]
+
+In slidy output, this slide illustrates +footnote[]+, +footnoteref[]+ and +pagebreak+ combination.
+
+Two more footnotes footnote:[A third example footnote.] footnote:[A fourth example footnote.], a footnote with a reference ID footnoteref:[anotherId,anotherId referenced footnote.] and a reference to another footnote footnoteref:[myId] (defined in the previous slide in slidy output).
+
+[CAUTION]
+.Caveats
+====
+. There is no generated link for this 'Slidy footnotes'.
+. Do not insert 'newline' character inside your AsciiDoc 'footnote' text.
+====
+
+=== SVG callouts
+
+With SVG, callout icons are bigger and will gracefully scale on window resizing.
+
++callout-inlinemacro+ and +listtags-callout+ produce an +object+ tag which uses SVG or PNG images depending on the browser SVG compatibility.
+
+:incremental:
+
+.Callout produced markup
+----
+<object data="{icon={iconsdir}/callouts/{index}.svg}"          <1><2>
+        type="image/svg+xml" title="{index}"                   <2>
+        width="{slidecalloutwidth=4%}">                        <3>
+ <img src="{iconsdir}/callouts/{index}.png" alt="{index}" />   <4> 
+</object>                                                      <1> 
+----
+
+<1> HTML +object+ tag
+<2> SVG icon
+<3> default SVG icon width
+<4> PNG icon used if SVG is not supported
+
+==== +slidecalloutwidth+ attribute
+
+At any point you can change 'callout width'
+with the following statement :
+
+ifdef::backend-slidy2[:slidecalloutwidth: 7%]
+
+----
+ ifdef::backend-slidy2[:slidecalloutwidth: 7%]  <1>
+----
+
+<1> use a relative unit ('%') if you want that
+callout icons scale with window size.
+
+and you can return to the default with :
+
+----
+ ifdef::backend-slidy2[:slidecalloutwidth!:]
+----
+
+ifdef::backend-slidy2[:slidecalloutwidth!:]
+
+==== How SVG callouts were generated
+
+The following 'python program' was used in the
++backends/slidy2/images/icons/callouts/+ directory to produce SVG callouts.
+
+.link:svg_callouts.py[svg_callouts.py]
+----
+include::../images/icons/callouts/svg_callouts.py[]
+----
+
+==== SVG callouts style
+
+Each generated callout svg file
+references the +callout.css+ stylesheet.
+
+You can customize 'color' and 'font' by putting the following definitions
+in the +images/icons/callouts/callout.css+ stylesheet.
+
+.callout.css
+----
+circle.callout { fill: red; }                    <1><2>
+text.callout { fill: blue; font-family: Times; } <1><2>
+----
+
+<1> SVG css style for SVG tag
+<2> you cannot put this style in your usual css stylesheet
+
+=== Slidy background block
+
+You can define 'Slidy' backgrounds at any point in your
+document source, as follows :
+
+----
+[optional backgroundName,optional background block CSS style]
+&&&&
+ AsciiDoc markup
+&&&&
+----
+
+NOTE: You can use +data-uri+ attribute to embed background images.
+
+TIP: Do not give a name to define the default background
+
+ifdef::backend-slidy2[<<<]
+
+For example, the following definition creates the first
+background used in the 'Slidy' output of this document :
+
+----
+[asciidocslidy,opacity: 0.4; position: absolute; left: 60%; top: 40%;]
+&&&&
+[width="100%",cols="7,^3",frame="none",grid="none"]
+|=============================================
+| | *Powered by* 
+| | image:./images/asciidoc.png["AsciiDoc"]
+| | *and*
+| | image:./images/w3c_home.png["W3C"] *Slidy*
+|=============================================
+&&&&
+----
+
+ifdef::backend-slidy2[]
+[asciidocslidy, opacity: 0.4; position: absolute; left: 60%; top: 40%;]
+&&&&
+[width="100%",cols="7,^3",frame="none",grid="none"]
+|=============================================
+| | *Powered by* 
+| | image:./images/asciidoc.png["AsciiDoc"]
+| | *and*
+| |  image:./images/w3c_home.png["W3C"] *Slidy*
+|=============================================
+&&&&
+endif::backend-slidy2[]
+
+=== +slidebackground+ attribute
+
+At any point you can switch to some background
+with the following statement :
+
+----
+ ifdef::backend-slidy2[:slidebackground: asciidocslidy]
+----
+
+and you can disable any background with the following one :
+
+----
+ ifdef::backend-slidy2[:slidebackground!:]
+----
+
+=== +slidefontsizeadjust+ attribute
+
+If you set the +slidefontsizeadjust+ attribute, a +meta+ markup
+will be inserted in the 'Slidy' output.
+
+As usual, you can set +slidefontsizeadjust+ attribute on the 'command line' :
+
+----
+ asciidoc ... -a slidefontsizeadjust=-2 ...
+----
+
+or in your 'source header' :
+
+----
+ :slidefontsizeadjust: -2
+----
+
+== 'slidy2' backend quickref
+
+.Attributes
+[width="90%",cols="5,^2,10",options="header"]
+|=========================================================
+|Attribute |Header Only |Notes
+|+:copyright:+|Yes|Footer content
+|+:duration:+|Yes|Estimated number of minutes
+|+:incremental:+||When set, produces 'Slidy' incremental output
+|+:slidetitleindentcar:+||Inserted before subsection levels , if numbering is off. (default=+»+)
+|+:slidecalloutwidth:+||SVG callouts width (default=+4%+)
+|+:slidebackground:+||Switch to the given background
+|+:slidefontsizeadjust:+|Yes|Globaly adjust fontsize (+-N)
+|=========================================================
+
+ifdef::backend-slidy2[<<<]
+
+.Macros
+[width="90%",cols="7,10",options="header"]
+|=========================================================
+|Macro |Notes
+|+images::last[first,second,...]+|Produces incremental images markup
+|+>>>+|Merges the next section with the current one
+|+<<<+|Splits current content
+|=========================================================
+.Blocks
+[width="90%",cols="3,12",options="header"]
+|=========================================================
+|Block |Notes
+|+&&&&+|Defines a Slidy background
+|=========================================================
+
+[[XUG]]
+== 'AsciiDoc' userguide 'Slidy' output
+
+For a more complete example consider
+the 'AsciiDoc' userguide 'Slidy' output produced with
+this contrib.
+
+TIP: The 'AsciiDoc 8.6.5' userguide 'slidy' link:userguide865.slidy.html[output] produced with the AsciiDoc *default* 'slidy' backend  contains 47 slides with many too long contents.
+
+**********************************************************************
+The following +asciidoc.txt+ *customization* have introduced :
+
+. about 100 'slidy2' conditionnal +pagebreak+ (+<<<+) to split long contents
+
+. about 20  'slidy2' conditionnal +nopagebreak+ (+>>>+) to merge shorts sections
+
+. about 10 'slidy2' conditionnal +pagebreak+ to split long lists or tables
+
+
+*to produce* 
+this link:userguide865_slidy2.txt[] customized source file
+and this link:userguide865_slidy2.slidy.html[] 'Slidy' output (with 311 slides).
+**********************************************************************
+
+== Extra features added to W3C Slidy (C) slideshows
+
+**********************************************************************
+http://www.w3.org/Talks/Tools/Slidy2/[W3C HTML Slidy] (C) from 'Dave Raggett' is an HTML slideshow tool.
+**********************************************************************
+ifdef::backend-slidy2[>>>]
+
+=== Added features
+
+The 'slidy2' backend plugin distribution contains a modified version of
+the W3C Slidy (C) +slidy.js+ file that enable you to :
+
+:incremental:
+
+. toggle incremental display during a slideshow
+. toggle css color-sets during a slideshow
+. display the keys mapping during a slideshow
+
+ifdef::backend-slidy2[:slidebackground: asciidocslidy]
+
+=== Usage
+
+:incremental!:
+
+. Press  
+ifndef::backend-docbook[+++<span class="keycap">I</span>+++]
+ifdef::backend-docbook[+++<keycap>I</keycap>+++]
+to toggle incremental display ON/OFF
+at any point during a slideshow
+
+:incremental:
+
+. Press 
+ifndef::backend-docbook[+++<span class="keycap">L</span>+++]
+ifdef::backend-docbook[+++<keycap>L</keycap>+++]
+to circularly toggle css color-set
+at any point during a slideshow
++
+[NOTE]
+====
+. create your css color set and give it a name containing 'color_set'
+. link or include your color sets as usual :
+.. +<link rel="stylesheet" href="/path/to/your_color_set.css" type="text/css" />+
++
+.. +<style type="text/css" title="your_color_set"> ... </style>+
++
+[TIP]
+====
+With Firefox, you can switch through the 'View' -> 'Page Style'  menu.
+====
+====
+
+. Press 
+ifndef::backend-docbook[+++<span class="keycap">M</span>+++]
+ifdef::backend-docbook[+++<keycap>M</keycap>+++]
+to show the key mapping
+at any point during a slideshow
+
+
+:incremental!:
+
+=== Implementation notes
+
+ifdef::backend-slidy2[>>>]
+
+==== Incremental display toggle
+
+. +w3c_slidy.incremental_display+ added
+. in each incremental display related method, sets +incremental+ to +false+ if +w3c_slidy.incremental_display+ is +false+
+. keyboard 
+ifndef::backend-docbook[+++<span class="keycap">I</span>+++] 
+ifdef::backend-docbook[+++<keycap>I</keycap>+++] 
+key added to toggle +w3c_slidy.incremental_display+ value
+
+==== css color-sets toggle
+
+. +w3c_slidy.color_sets+ array added
+. +w3c_slidy.init_color_sets()+ added
+. +w3c_slidy.toggle_color_set()+ added
+. keyboard 
+ifndef::backend-docbook[+++<span class="keycap">L</span>+++]
+ifdef::backend-docbook[+++<keycap>L</keycap>+++]
+ key added to circularly toggle +w3c_slidy.color_set+ value
+
+Some predefined color sets :
+
+- link:../stylesheets/slidy2_color_set_black.css[]
+- link:../stylesheets/slidy2_color_set_blue.css[]
+- link:../stylesheets/slidy2_color_set_green.css[]
+- link:../stylesheets/slidy2_color_set_none.css[]
+- link:../stylesheets/slidy2_color_set_yellow.css[]
+
+==== key mapping display
+
+. +w3c_slidy.keymap+ added
+. keyboard 
+ifndef::backend-docbook[+++<span class="keycap">M</span>+++]
+ifdef::backend-docbook[+++<keycap>M</keycap>+++]
+ key added to display the key mapping
+
+==== Source diff file
+
+- link:slidy_to_slidy2.diff[]
+
+ifdef::backend-slidy2[:slidebackground!:]
+
+== How to use 'slidy2' backend plugin
+
+NOTE: This backend plugin requires http://www.methods.co.nz/asciidoc[AsciiDoc] 8.6.6 or newer to run.
+
+=== Install the 'slidy2' backend plugin
+
+This http://www.methods.co.nz/asciidoc[AsciiDoc] backend plugin is hosted at http://code.google.com/p/asciidoc-slidy2-backend-plugin/.
+
+1. Download the latest release ({revnumber}) zip file from http://code.google.com/p/asciidoc-slidy2-backend-plugin/downloads/list
+
+2. Install the release with one of the following http://www.methods.co.nz/asciidoc[AsciiDoc] +backend+ commands :
++
+----
+> asciidoc --backend install slidy2-v1.0.3.zip <1> 
+> asciidoc --backend install slidy2-v1.0.3.zip /etc/asciidoc/backends <2>
+----
+
+<1> will install 'slidy2' backend in the user homedir
+<2> will install 'slidy2' backend in the given place
+
+=== Use the 'slidy2' backend plugin
+
+You can produce your 'Slidy' outputs with the following command :
+----
+> asciidoc --backend slidy2 -o doc.slidy.html doc.txt
+----
+
+[NOTE]
+====
+Add the +data-uri+ attribute to produce a self contained presentation (with css, javascript and images included) :
+----
+> asciidoc -a data-uri --backend slidy2 -o doc.slidy.html doc.txt
+----
+====
+
+== How to generate 'slidy2' documentation
+
+----
+> cd .../backends/slidy2/doc
+> edit make.txt paths accordingly to your platform
+> asciidoc -a nt    --unsafe make.txt        <1>
+> asciidoc -a posix --unsafe make.txt        <2>
+----
+
+<1> on windows (C) platforms
+<2> on Unix like platforms
+
+NOTE: theses commands will produce a +make.html+ trace file.
+
+== How to run 'slidy2' backend plugin tests
+
+You can run test suite on any platform from the +tests+ directory :
+
+----
+> cd .../backends/slidy2/tests
+> python slidy2_UnitTest.py
+----
+
+ifdef::backend-slidy2[]
+:slidebackground: asciidocslidy
+
+== Thanks for your attention
+
+Any questions ?
+
+endif::backend-slidy2[]

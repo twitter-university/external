@@ -4,6 +4,24 @@ p.note {
   font-style: italic;
 }
 
+div.title {
+	text-align: center;
+	font-style: italic;
+	font-size: 0.8em;
+}
+
+.preamble p {
+	text-align: right;
+	font-size: 0.65em;
+	color: #888;
+}
+
+h2.section-slide {
+	font-size: 3em;
+	font-weight: bold;
+  	text-align: center;
+}
+
 .deck-container {
   font-family: 'PT Sans';
   font-size: 1.5em;
